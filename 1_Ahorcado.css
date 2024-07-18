@@ -1,0 +1,48 @@
+body {
+  display: flex;
+  justify-content: center;
+  place-items: center;
+  height: 100vh;
+  text-align: center;
+  font-family: "Comic Sans Ms";
+  color: white;
+}
+
+.contenedor {
+  background-color: #593;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  width: 300px;
+}
+
+h1 {
+  background-color: rgb(74, 181, 115);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  margin-top: 0;
+}
+input[type="button"] {
+  background-color: #25f6;
+  border: none;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin: 1rem;
+  color: white;
+}
+
+input[type="button"]:hover {
+  background-color: #955;
+}
+#palabra {
+  font-size: 1.5rem;
+  letter-spacing: 0.4rem;
+  margin-bottom: 20px;
+}
+input[type="text"] {
+  background-color: #498;
+  border: none;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  color: white;
+  font-size: 1.5rem;
+}

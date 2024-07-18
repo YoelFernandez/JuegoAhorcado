@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ahorcado</title>
+    <link rel="stylesheet" href="1_Ahorcado.css">
+  </head>
+  <body>
+    <div class="contenedor">
+      <h1>Juego ahorcado</h1>
+      <p id="palabra">palabra saliente</p>
+      <input type="button" value="Generar Palabra" onclick="Jugar()" />
+      <p>
+        Digita la letra:
+        <input type="text" id="caracter" maxlength="1" /><br /><input
+          type="button"
+          value="Probar"
+          id="probar"
+          onclick="probar()"
+        />
+      </p>
+      <p id="Intentos">cantidad de intentos: 5</p>
+    </div>
+
+    <script>
+      let palabra = ["laurel", "css", "yoel", "pitufo", "gato", "panda"];
+      let palabraSalida = "";
+      let entro;
+      let mostrar = "";
+      let cantidadIntentos;
+      let contenedor = [];
+
+      function Jugar() {
+        let numeroRandon = Math.floor(Math.random() * palabra.length);
+        palabraSalida = palabra[numeroRandon];
+        entro = false;
+        cantidadIntentos = 5;
+        mostrar = "";
+        contenedor.length = 0;
+        for (let i = 0; i < palabraSalida.length; i++) {
+          mostrar += "_";
+        }
+        document.getElementById("palabra").innerHTML = mostrar;
+        document.getElementById("probar").disabled = false;
+        document.getElementById("Intentos").innerHTML =
+          "cantidad de intentos: " + cantidadIntentos;
+      }
+
+      function probar() {
+        let caracter = document.getElementById("caracter").value;
+        caracter = caracter.toLowerCase();
+        for (let i = 0; i < palabraSalida.length; i++) {
+          if (
+            caracter == palabraSalida[i] &&
+            entro == false &&
+            !contenedor.includes(i)
+          ) {
+            mostrar =
+              mostrar.slice(0, i) + caracter + mostrar.slice(i + 1);
+            entro = true;
+            contenedor.push(i);
+          }
+        }
+        if (entro == false) {
+          cantidadIntentos--;
+        } else {
+          entro = false;
+        }
+
+        if (cantidadIntentos == 0) {
+          document.getElementById("Intentos").innerHTML =
+            "Fin del juego Usted ha Perdido";
+          document.getElementById("probar").disabled = true;
+        } else {
+          document.getElementById("Intentos").innerHTML =
+            "cantidad de intentos: " + cantidadIntentos;
+        }
+        document.getElementById("palabra").innerHTML = mostrar;
+        document.getElementById("caracter").value = "";
+
+        if (contenedor.length == palabraSalida.length) {
+          document.getElementById("Intentos").innerHTML =
+            "Fin del juego Usted ha ganado";
+          document.getElementById("probar").disabled = true;
+        }
+      }
+    </script>
+  </body>
+</html>
